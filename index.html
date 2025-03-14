@@ -8,34 +8,66 @@
 </head>
 <body>
     <header>
-        <h1>TTS模型演示</h1>
-        <p>展示不同TTS模型的合成效果对比</p>
+        <h1>西安方言TTS模型演示</h1>
+        <!--<p>展示不同TTS模型的合成效果对比</p>-->
     </header>
     
     <main>
-        <!-- 内容将在这里添加 -->
+        <!-- 添加真实说话人录音部分 -->
         <section class="audio-sample">
-            <h2>示例文本 1</h2>
-            <p class="sample-text">这是一段用于TTS合成的示例文本，展示模型的自然度和表现力。</p>
-            
-            <h3>模型 A 合成结果</h3>
+            <h2>真实说话人录音</h2>
+            <p class="sample-text">白灵的不期而至使朱先生有惊诧有喜悦。</p>
             <audio controls>
-                <source src="audio/sample1_modelA.mp3" type="audio/mpeg">
-                您的浏览器不支持音频元素
-            </audio>
-            
-            <h3>模型 B 合成结果</h3>
-            <audio controls>
-                <source src="audio/sample1_modelB.mp3" type="audio/mpeg">
+                <source src="audio/real_speaker.wav" type="audio/mpeg">
                 您的浏览器不支持音频元素
             </audio>
         </section>
-
+        
+        <section class="audio-sample">
+            <h2>示例文本</h2>
+            <p class="sample-text"> 北风与太阳两方，为谁的能量大相互争论不休，他们决定，谁能使得行人脱下衣服，谁就胜利了。北风一开始就猛烈地刮，路上的行人紧紧裹住自己的衣服，风见此，刮得更猛。行人冷得发抖，便添加更多衣服。风刮疲倦了，便让位给太阳。太阳最初把温和的阳光洒向行人，行人脱掉了添加的衣服，太阳接着把强烈阳光射向大地，行人们开始汗流浃背，渐渐地忍受不了，脱光了衣服，跳到了旁边的河里去洗澡。</p>
+            
+            <h3>模型 A 合成结果</h3>
+            <audio controls>
+                <source src="audio/output_sx.wav" type="audio/mpeg">
+                您的浏览器不支持音频元素
+            </audio>
+            <!-- 添加模型A的频谱图 -->
+            <div class="spectrogram">
+                <h4>频谱图</h4>
+                <img src="image/spec_sx.png" alt="模型A频谱图">
+            </div>
+            
+            <h3>模型 B 合成结果</h3>
+            <audio controls>
+                <source src="audio/output_cos.wav" type="audio/mpeg">
+                您的浏览器不支持音频元素
+            </audio>
+            <!-- 添加模型B的频谱图 -->
+            <div class="spectrogram">
+                <h4>频谱图</h4>
+                <img src="image/spec_cos.png" alt="模型B频谱图">
+            </div>
+        </section>
+        
+        <!-- 添加损失函数曲线对比部分 -->
+        <section class="loss-comparison">
+            <h2>模型训练损失函数对比</h2>
+            <div class="loss-charts">
+                <div class="loss-chart">
+                    <h3>CTC Loss 对比</h3>
+                    <img src="images/ctc_loss_comparison.png" alt="CTC Loss 对比图">
+                </div>
+                <div class="loss-chart">
+                    <h3>Total Loss 对比</h3>
+                    <img src="images/total_loss_comparison.png" alt="Total Loss 对比图">
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer>
-        <p>© 2025 您的名字</p>
+        <p>© 2025 zhangjiang</p>
     </footer>
 </body>
 </html>
-
