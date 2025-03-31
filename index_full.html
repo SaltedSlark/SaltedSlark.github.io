@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS演示结果</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>西安方言TTS模型实验对比</h1>
+    </header>
+    
+    <main>
+        <!-- 基础模型性能对比表格 -->
+        <section class="model-performance">
+            <h2>基础模型性能对比</h2>
+            <table>
+                <tr>
+                    <th>模型配置</th>
+                    <th>MOS评分 (1-5)</th>
+                    <th>语音自然度</th>
+                    <th>方言准确度</th>
+                    <th>模型大小(fastpitch+hifigan)</th>
+                    <th>音频示例</th>
+                </tr>
+                <tr>
+                    <td>基线模型</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>1.06GB + 969 MB</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/output_sx.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>完整模型</td>
+                    <td>3.5</td>
+                    <td>3.5</td>
+                    <td>3.5</td>
+                    <td>1.06GB + 969 MB</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/output_cos.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 关键组件消融实验表格 -->
+        <section class="ablation-study">
+            <h2>关键组件消融实验</h2>
+            <table>
+                <tr>
+                    <th>模型变体</th>
+                    <th>BERT特征</th>
+                    <th>音素长度信息</th>
+                    <th>cosine aligner</th>
+                    <th>MOS评分</th>
+                    <th>方言准确度</th>
+                    <th>音频示例</th>
+                </tr>
+                <tr>
+                    <td>完整模型</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>3.5</td>
+                    <td>3.5</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/cur_best.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>无BERT特征</td>
+                    <td>✗</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>2.8</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/cos_wo_bert.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>无音素长度</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                    <td>✓</td>
+                    <td>2.8</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/cos_wo_plr.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>欧式距离 aligner</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                    <td>2.3</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/euclidean_aligner_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>仅基础模型</td>
+                    <td>✗</td>
+                    <td>✗</td>
+                    <td>✗</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 主观评估结果表格 -->
+        <section class="subjective-evaluation">
+            <h2>主观评估结果</h2>
+            <table>
+                <tr>
+                    <th>评估维度</th>
+                    <th>基线模型</th>
+                    <th>完整模型</th>
+                    <th>音频示例</th>
+                </tr>
+                <tr>
+                    <td>整体质量</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/full_model_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>音色自然度</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/full_model_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>方言准确性</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/full_model_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>语调自然度</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/full_model_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>语义准确度</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/baseline_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/full_model_example.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 不同文本类型性能表格 -->
+        <section class="text-type-performance">
+            <h2>不同文本类型性能</h2>
+            <table>
+                <tr>
+                    <th>文本类型</th>
+                    <th>基线模型MOS</th>
+                    <th>完整模型MOS</th>
+                    <th>示例文本</th>
+                    <th>基线典型错误</th>
+                    <th>音频示例</th>
+                </tr>
+                <tr>
+                    <td>日常对话</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>哎呀，好久不见了，你咋样啦？</td>
+                    <td>开头或结尾漏字 ，语气助词表现力不佳，音质不佳</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/日常对话1.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/日常对话2.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>新闻文本</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>昨日，我市举办了首届非物质文化遗产展，吸引了众多市民参观。</td>
+                    <td>停顿不自然</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/新闻文本1.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/新闻文本2.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>方言特有表达</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>莫着急，慢慢来，事情总会解决的。</td>
+                    <td>韵律不自然</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/方言特有表达1.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/方言特有表达2.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>故事类</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>从前有个叫王麻子的，整天游手好闲，不务正业。一天，他在街上瞎转悠，看见一个卖糖葫芦的老汉生意特别好，就心生一计，想着自己也整一担子糖葫芦卖。谁知道他做的糖葫芦又酸又涩，没人买，气得他把糖葫芦全倒了，回去继续当他的二流子。</td>
+                    <td>长文本语速异常</td>
+                    <td>
+                        <audio controls>
+                            <source src="audio/故事类1.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                        <audio controls>
+                            <source src="audio/故事类2.wav" type="audio/mpeg">
+                            您的浏览器不支持音频元素
+                        </audio>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 zhangjiang</p>
+    </footer>
+</body>
+</html>
+
